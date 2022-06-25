@@ -6,12 +6,22 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-<h1>List Employee</h1>
-<a href="create.html">Create new</a>
-<ul id="data"></ul>
-<script src="../js/util.js"></script>
-<script src="admin/jsdex.js"></script>
+<h1>Employee Table</h1>
+<table id="customers">
+    <tr>
+        <th>Name</th>
+        <th>Wage</th>
+    </tr>
+    <tr>
+        <th id="data"></th>
+        <th id="wage"></th>
+    </tr>
+</table>
+
+<script src="js/util.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

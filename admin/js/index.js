@@ -1,18 +1,3 @@
-function processDelete(id, e){
-    e.preventDefault();
-    if (confirm('Are u sure?')){
-        var xmlHttpRequest = new XMLHttpRequest();
-        xmlHttpRequest.onreadystatechange = function (){
-            if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
-                alert('Delete success;');
-                window.location.reload()
-            }
-        }
-        xmlHttpRequest.open('DELETE', API_URL + `/${id}`);
-        xmlHttpRequest.send();
-    }
-}
-
 function loadData(){
     var xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.onreadystatechange = function (){
@@ -22,11 +7,6 @@ function loadData(){
             for (let i = 0; i < jsonResponse.length; i++) {
                 contentHtml += `<li>
                                     ${jsonResponse[i].name}
-                                    <a href="/detail.html?id=${jsonResponse[i].id}">Detail</a>
-                                    <a href="/edit.html?id=${jsonResponse[i].id}">Edit</a>
-                                    <a href="#"
-                                     data-id="${jsonResponse[i].id}"
-                                     onclick="processDelete(${jsonResponse[i].id}, event)">Delete</a>
                                 </li>`;
             }
             document.getElementById("data").innerHTML = contentHtml;
@@ -35,6 +15,24 @@ function loadData(){
     xmlHttpRequest.open('GET', API_URL);
     xmlHttpRequest.send();
 }
+function loadData2(){
+    var xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onreadystatechange = function (){
+        if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+            var jsonResponse = JSON.parse(xmlHttpRequest.responseText);
+            var contentHtml = '';
+            for (let i = 0; i < jsonResponse.length; i++) {
+                contentHtml += `<li>
+                                    ${jsonResponse[i].wage}
+                                </li>`;
+            }
+            document.getElementById("wage").innerHTML = contentHtml;
+        }
+    }
+    xmlHttpRequest.open('GET', API_URL);
+    xmlHttpRequest.send();
+}
 document.addEventListener('DOMContentLoaded', function (){
     loadData();
+    loadData2();
 })
